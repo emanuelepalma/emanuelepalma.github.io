@@ -4,11 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Contact — Emanuele Palma</title>
-<meta name="description" content="Emanuele Palma — Doctoral Researcher in Image Processing and Quality Evaluation at Tampere University. Pixels and People.">
+<meta name="description" content="Emanuele Palma — Doctoral Researcher in image processing at Tampere University. Pixels and People.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -40,16 +41,15 @@
         <p class="lede lede--cream">I believe that a successfull collaboration always starts with a simple chat. Wheter you have a project you're itching to discuss, a complex problem to solve or just want to swap stories about what it's like to trade Italy for Finland, feel free to drop me a line. I'm always up for a good conversation. Just don't ask me for directions to the nearest pizzeria; here most of them put ketchup and pineapple on pizza and trust me, you do not want that information.</p>
         <div class="contact-details">
           <a class="contact-details__mail" href="mailto:palma.emanuele13@gmail.com">palma.emanuele13@gmail.com</a>
-          <p>Hervanta campus, Tampere &middot; CET+1</p>
+          <p>Tampere &middot; CET+1</p>
         </div>
       </div>
-      <form class="panel panel--dark" action="#" method="post">
-        <p class="label label--amber">Send a note</p>
-        <input class="field" type="text" name="name" placeholder="Your name" aria-label="Your name">
-        <input class="field" type="email" name="email" placeholder="Your email" aria-label="Your email">
-        <textarea class="field" name="message" rows="5" placeholder="What is this about?" aria-label="Message"></textarea>
-        <button class="btn btn--amber" type="submit">Send</button>
-      </form>
+      <div class="panel panel--dark">
+        <p class="label label--amber">Find me</p>
+        <div id="map" style="height:340px;border-radius:4px;overflow:hidden;margin:12px 0 14px;filter:saturate(0.7) contrast(1.05);"></div>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;opacity:0.7;margin:0 0 10px;">CIVIT (SA201)&middot;S&auml;hk&ouml;talo &middot; Korkeakoulunkatu 3 &middot; 33720 Tampere</p>
+        <a class="btn btn--amber" href="https://www.google.com/maps/dir/?api=1&amp;destination=S%C3%A4hk%C3%B6talo%2C%20Korkeakoulunkatu%203%2C%2033720%20Tampere" target="_blank" rel="noopener">Get directions</a>
+      </div>
     </div>
   </section>
 
@@ -79,6 +79,23 @@
   </div>
 </footer>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function () {
+  var el = document.getElementById('map');
+  if (!el || !window.L) return;
+  var pos = [61.44957, 23.85578];
+  var map = L.map(el, { scrollWheelZoom: false }).setView(pos, 16);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; OpenStreetMap &copy; CARTO',
+    maxZoom: 19
+  }).addTo(map);
+  L.circleMarker(pos, {
+    radius: 9, color: '#FFB900', weight: 2,
+    fillColor: '#FFB900', fillOpacity: 0.85
+  }).addTo(map).bindPopup('S\u00e4hk\u00f6talo &mdash; Korkeakoulunkatu 3').openPopup();
+})();
+</script>
 <script src="js/site.js" defer></script>
 </body>
 </html>
