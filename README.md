@@ -44,3 +44,8 @@ change the text:
 
 Responsive with no media queries: the grids use `auto-fit` + `minmax`, type uses `clamp()`.
 Motion respects `prefers-reduced-motion`.
+
+
+## Credits
+
+Paintbrush icon in the mark: Font Awesome Free (CC BY 4.0) — https://fontawesome.com/license/free
